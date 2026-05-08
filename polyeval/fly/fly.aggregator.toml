@@ -1,0 +1,47 @@
+# Fly.io config for the PolyEval Aggregator service.
+# Deploy: fly deploy -c fly/fly.aggregator.toml --app polyeval-aggregator
+
+app = "polyeval-aggregator"
+primary_region = "ord"
+kill_signal = "SIGINT"
+kill_timeout = "30s"
+
+[build]
+  dockerfile = "aggregator/Dockerfile"
+
+[env]
+  POLYEVAL_LOG_LEVEL = "INFO"
+  OTEL_SERVICE_NAME = "polyeval-aggregator"
+  OTEL_EXPORTER_OTLP_PROTOCOL = "grpc"
+
+[[services]]
+  protocol = "tcp"
+  internal_port = 8002
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 1
+
+  [[services.ports]]
+    port = 8002
+    handlers = ["http"]
+
+  [[services.http_checks]]
+    interval = "15s"
+    timeout = "5s"
+    grace_period = "30s"
+    method = "GET"
+    path = "/healthz"
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 512
+
+[mounts]
+  # Attestation signing key.
+  source = "eval_signer_key"
+  destination = "/run/secrets"
+
+[metrics]
+  port = 8002
+  path = "/metrics"

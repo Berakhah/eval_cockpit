@@ -1,0 +1,15 @@
+# Backend artifacts
+**/__pycache__/
+**/*.egg-info/
+**/.pytest_cache/
+**/.mypy_cache/
+**/.ruff_cache/
+api/openapi.json
+scheduler/target/
+aggregator/dist/
+
+# Secrets (per-env)
+infra/.env
+
+# Local docker volumes mounted ad-hoc
+infra/data/

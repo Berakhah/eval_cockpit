@@ -1,0 +1,74 @@
+{
+  "defaultAction": "SCMP_ACT_ERRNO",
+  "archMap": [
+    {"architecture": "SCMP_ARCH_X86_64", "subArchitectures": ["SCMP_ARCH_X86"]}
+  ],
+  "syscalls": [
+    {
+      "names": [
+        "read","write","open","openat","close","fstat","stat","lstat",
+        "mmap","mprotect","munmap","brk","rt_sigaction","rt_sigprocmask",
+        "ioctl","pread64","pwrite64","readv","writev","access","pipe",
+        "select","sched_yield","mremap","msync","madvise","dup","dup2",
+        "nanosleep","getitimer","alarm","setitimer","getpid","sendfile",
+        "socket","connect","accept","sendto","recvfrom","sendmsg","recvmsg",
+        "shutdown","bind","listen","getsockname","getpeername",
+        "socketpair","setsockopt","getsockopt","clone","execve","exit",
+        "wait4","kill","uname","fcntl","flock","fsync","fdatasync",
+        "truncate","ftruncate","getdents","getcwd","chdir","fchdir",
+        "rename","mkdir","rmdir","creat","link","unlink","symlink",
+        "readlink","chmod","fchmod","chown","fchown","lchown","umask",
+        "gettimeofday","getrlimit","getrusage","sysinfo","times","getuid",
+        "syslog","getgid","setuid","setgid","geteuid","getegid",
+        "getppid","getpgrp","setsid","setreuid","setregid",
+        "getgroups","setgroups","setresuid","getresuid","setresgid",
+        "getresgid","getpgid","setpgid","getpriority","setpriority",
+        "rt_sigpending","rt_sigtimedwait","rt_sigqueueinfo","rt_sigsuspend",
+        "sigaltstack","mknod","statfs","fstatfs","sched_setaffinity",
+        "sched_getaffinity","set_thread_area","get_thread_area","arch_prctl",
+        "set_tid_address","restart_syscall","semtimedop","fadvise64",
+        "timer_create","timer_settime","timer_gettime","timer_getoverrun",
+        "timer_delete","clock_settime","clock_gettime","clock_getres",
+        "clock_nanosleep","tgkill","futex","waitid","ioprio_set",
+        "ioprio_get","inotify_init","inotify_add_watch","inotify_rm_watch",
+        "openat2","statx","getrandom","memfd_create","pipe2",
+        "pselect6","ppoll","epoll_create","epoll_ctl","epoll_wait",
+        "epoll_create1","epoll_pwait","inotify_init1",
+        "signalfd","signalfd4","eventfd","eventfd2","fallocate",
+        "timerfd_create","timerfd_gettime","timerfd_settime",
+        "accept4","recvmmsg","sendmmsg","setns","getcpu","process_vm_readv",
+        "sched_setscheduler","sched_getscheduler","sched_getparam",
+        "sched_setparam","sched_get_priority_max","sched_get_priority_min",
+        "exit_group","set_robust_list","get_robust_list","splice","tee",
+        "vmsplice","move_pages","preadv","pwritev","rt_tgsigqueueinfo",
+        "prlimit64","name_to_handle_at","open_by_handle_at",
+        "syncfs","sendmmsg","setns","getcpu","kcmp","finit_module",
+        "sched_setattr","sched_getattr","renameat2","seccomp","getrandom",
+        "memfd_create","bpf","copy_file_range","preadv2","pwritev2",
+        "mlock2","fsync","fdatasync","sync","syncfs",
+        "newfstatat","readlinkat","linkat","symlinkat","unlinkat",
+        "mkdirat","mknodat","fchownat","fchmodat","futimesat","utimensat"
+      ],
+      "action": "SCMP_ACT_ALLOW"
+    },
+    {
+      "names": ["ptrace","bpf","kexec_load","mount","umount2","pivot_root","unshare"],
+      "action": "SCMP_ACT_KILL"
+    },
+    {
+      "names": ["sysfs","_sysctl","uselib","swapon","swapoff",
+                "reboot","sethostname","setdomainname","iopl","ioperm",
+                "create_module","init_module","delete_module","quotactl",
+                "nfsservctl","getpmsg","putpmsg","afs_syscall","tuxcall",
+                "security","lookup_dcookie","vserver","mbind","set_mempolicy",
+                "get_mempolicy","mq_open","mq_unlink","mq_timedsend",
+                "mq_timedreceive","mq_notify","mq_getsetattr","add_key",
+                "request_key","keyctl","perf_event_open",
+                "fanotify_init","fanotify_mark","name_to_handle_at",
+                "open_by_handle_at","clock_adjtime","landlock_create_ruleset",
+                "landlock_add_rule","landlock_restrict_self"],
+      "action": "SCMP_ACT_ERRNO",
+      "errnoRet": 1
+    }
+  ]
+}

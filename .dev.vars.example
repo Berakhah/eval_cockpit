@@ -1,0 +1,16 @@
+# Copy to `.dev.vars` (gitignored) for local Worker dev.
+# `bun run dev` (vite + cloudflare/vite-plugin) reads these as the Worker env.
+#
+# Public values that match the cockpit can also live in wrangler.jsonc `vars`.
+# Anything sensitive (HMAC secret) belongs ONLY here in dev — and in
+# `wrangler secret put` for production.
+
+# --- Public (mirrors wrangler.jsonc `vars`; .dev.vars wins for local dev) ---
+POLYEVAL_API_BASE_URL=http://localhost:8000
+POLYEVAL_TENANT_ID=demo
+POLYEVAL_HMAC_KEY_ID=key_local_dev
+
+# --- Secrets (never commit, never expose to the browser) ---
+# Must match polyeval/infra/.env's POLYEVAL_HMAC_SECRET so signed requests
+# from the Worker validate at the API.
+POLYEVAL_HMAC_SECRET=dev-secret-please-rotate-32bytes-min

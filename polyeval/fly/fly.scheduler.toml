@@ -1,0 +1,53 @@
+# Fly.io config for the PolyEval Scheduler service.
+# Deploy: fly deploy -c fly/fly.scheduler.toml --app polyeval-scheduler
+#
+# NOTE: Docker-in-Docker for runner containers requires a privileged Fly machine.
+# Use Fly's dedicated CPU machines for this service.
+
+app = "polyeval-scheduler"
+primary_region = "ord"
+kill_signal = "SIGTERM"
+kill_timeout = "60s"
+
+[build]
+  dockerfile = "scheduler/Dockerfile"
+
+[env]
+  RUST_LOG = "info"
+  POLYEVAL_SCHEDULER_BIND = "0.0.0.0:8001"
+  POLYEVAL_MAX_CONCURRENT = "4"
+  OTEL_SERVICE_NAME = "polyeval-scheduler"
+  OTEL_EXPORTER_OTLP_PROTOCOL = "grpc"
+
+[[services]]
+  protocol = "tcp"
+  internal_port = 8001
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 1
+
+  [[services.ports]]
+    port = 8001
+    handlers = ["http"]
+
+  [services.concurrency]
+    type = "connections"
+    hard_limit = 50
+    soft_limit = 40
+
+  [[services.http_checks]]
+    interval = "15s"
+    timeout = "5s"
+    grace_period = "60s"
+    method = "GET"
+    path = "/healthz"
+
+[[vm]]
+  # Dedicated machines required for Docker runner containers.
+  cpu_kind = "performance"
+  cpus = 2
+  memory_mb = 4096
+
+[metrics]
+  port = 8001
+  path = "/metrics"

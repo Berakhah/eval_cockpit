@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp -r 'D:\\\\Project\\\\eval-cockpit\\\\.claude\\\\worktrees\\\\naughty-ellis-dcbcb4/polyeval' 'D:\\\\Project\\\\eval-cockpit\\\\.claude\\\\worktrees\\\\vigorous-wu-f902f8/')",
+      "Bash(cp -r 'D:\\\\Project\\\\eval-cockpit\\\\.claude\\\\worktrees\\\\naughty-ellis-dcbcb4/.github' 'D:\\\\Project\\\\eval-cockpit\\\\.claude\\\\worktrees\\\\vigorous-wu-f902f8/')",
+      "Bash(cp 'D:\\\\Project\\\\eval-cockpit\\\\.claude\\\\worktrees\\\\naughty-ellis-dcbcb4/CLAUDE.md' 'D:\\\\Project\\\\eval-cockpit\\\\.claude\\\\worktrees\\\\vigorous-wu-f902f8/')",
+      "Bash(cp 'D:\\\\Project\\\\eval-cockpit\\\\.claude\\\\worktrees\\\\naughty-ellis-dcbcb4/.dev.vars.example' 'D:\\\\Project\\\\eval-cockpit\\\\.claude\\\\worktrees\\\\vigorous-wu-f902f8/')",
+      "Bash(cp 'D:\\\\Project\\\\eval-cockpit\\\\.claude\\\\worktrees\\\\naughty-ellis-dcbcb4/package.json' 'D:\\\\Project\\\\eval-cockpit\\\\.claude\\\\worktrees\\\\vigorous-wu-f902f8/')",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(Remove-Item \"D:\\\\Project\\\\eval-cockpit\\\\.claude\\\\worktrees\\\\vigorous-wu-f902f8\\\\src\\\\infrastructure\\\\server\\\\mockStore.server.ts\" -Force)",
+      "Bash(bun run *)",
+      "PowerShell(Get-Command node, npm, npx, bun, bunx 2>&1)",
+      "PowerShell(Get-Command cargo -ErrorAction SilentlyContinue; Test-Path \"$env:USERPROFILE\\\\.cargo\\\\bin\\\\cargo.exe\")",
+      "Bash(git rm *)",
+      "Bash(python3 -c \"import json,sys; p=json.load\\(sys.stdin\\); deps=list\\(p.get\\('dependencies',{}\\).keys\\(\\)\\)+list\\(p.get\\('devDependencies',{}\\).keys\\(\\)\\); print\\('\\\\n'.join\\(sorted\\(deps\\)\\)\\)\")",
+      "Bash(cat vite.config.ts)",
+      "Bash(cat vite.config.js)",
+      "Bash(bun install *)",
+      "Bash(which bun *)",
+      "Read(//mnt/c/Users/berek/.bun/**)",
+      "Read(//mnt/**)"
+    ]
+  }
+}

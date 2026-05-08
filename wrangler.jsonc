@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "tanstack-start-app",
+  "compatibility_date": "2025-09-24",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "@tanstack/react-start/server-entry",
+
+  // Public-shaped config exposed to the cockpit via server-fns.
+  // POLYEVAL_HMAC_SECRET is intentionally NOT listed here — it must come from
+  // `wrangler secret put POLYEVAL_HMAC_SECRET` (prod) or `.dev.vars` (local) so
+  // the value never leaks into bundles or source control.
+  "vars": {
+    "POLYEVAL_API_BASE_URL": "http://localhost:8000",
+    "POLYEVAL_TENANT_ID": "demo",
+    "POLYEVAL_HMAC_KEY_ID": "key_local_dev",
+  },
+}
