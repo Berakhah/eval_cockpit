@@ -108,7 +108,7 @@ export function Cockpit() {
   );
 }
 
-function ValidationSummary({ issues }: { issues: { path: (string | number)[]; message: string }[] }) {
+function ValidationSummary({ issues }: { issues: { path: PropertyKey[]; message: string }[] }) {
   if (issues.length === 0)
     return (
       <div className="text-[11px] font-mono text-muted-foreground">
@@ -119,11 +119,11 @@ function ValidationSummary({ issues }: { issues: { path: (string | number)[]; me
   return (
     <div
       className="text-[11px] font-mono text-danger truncate"
-      title={issues.map((i) => `${i.path.join(".")}: ${i.message}`).join("\n")}
+      title={issues.map((i) => `${i.path.map(String).join(".")}: ${i.message}`).join("\n")}
     >
       <Pill tone="danger">{issues.length} issue{issues.length === 1 ? "" : "s"}</Pill>
       <span className="ml-2 text-muted-foreground">
-        {issues[0].path.join(".") || "input"}: {issues[0].message}
+        {issues[0].path.map(String).join(".") || "input"}: {issues[0].message}
       </span>
     </div>
   );
