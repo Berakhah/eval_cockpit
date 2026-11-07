@@ -2,26 +2,20 @@
 
 > Personal project, built on my own time and equipment. No employer code. An early prototype.
 
-**Secure, deterministic evaluation of LLM‑generated code — with a real‑time cockpit UI and cryptographic attestations.**
+An early prototype of a harness that runs LLM-generated code in sandboxed containers and scores it, with a small web UI. It is not the evaluation pipeline I worked on at DZ Software Engineering; that code belongs to DZ and is not public.
 
-Eval Cockpit is a monorepo for **PolyEval**, a multi‑language code evaluation harness. It ships two deployable products:
+What is here, as of 8 Nov 2026:
 
-| Subtree | Technology | Deploy target |
-| --- | --- | --- |
-| `src/` | TanStack Start + React + Vite | Cloudflare Workers (cockpit UI) |
-| `polyeval/` | FastAPI + Rust + Python + Docker | WSL2 / Fly.io (backend) |
+| Subtree | What it holds |
+| --- | --- |
+| `src/` | Web UI (TanStack Start + React + Vite) |
+| `polyeval/api` | FastAPI gateway with request signing |
+| `polyeval/runners` | Container definitions for Python, JavaScript, Java, C++ and Rust runners, each with a seccomp profile |
+| `polyeval/scheduler` | Rust scheduler reading jobs from Redis Streams |
+| `polyeval/aggregator` | Scoring, bootstrap confidence intervals and signed result files |
+| `polyeval/infra` | Local observability stack (Prometheus, Grafana, Loki, Tempo) |
 
----
-
-## Why it stands out
-
-- **Sandbox‑first security**: gVisor (`runsc`) + seccomp‑bpf + cgroupv2 + read‑only rootfs + no‑network isolation.
-- **Deterministic performance**: external wall‑clock measurement, RNG seeding, warmup discard, trimmed‑mean reduction.
-- **Verifiable results**: Ed25519‑signed JSON attestations using canonical JSON.
-- **Contract‑driven API**: OpenAPI generated from Pydantic → TypeScript codegen for the cockpit.
-- **Multi‑language by design**: runners for Python, JavaScript, Java, C++, Rust.
-
----
+Status: the design and code exist, but there is no CI in this repository and no published run. The test suite is small (81 `def test_` functions, mostly unit and property tests). The initial code arrived in one large commit. An AI agent drafted the first README; this version was rewritten on 8 Nov 2026 to say only what the repo holds.
 
 ## Architecture at a glance
 
