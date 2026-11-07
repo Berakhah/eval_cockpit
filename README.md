@@ -1,6 +1,6 @@
 # Eval Cockpit (PolyEval)
 
-> Personal project, built on my own time and equipment. No employer code. An early prototype (3 commits).
+> Personal project, built on my own time and equipment. No employer code. An early prototype.
 
 **Secure, deterministic evaluation of LLM‑generated code — with a real‑time cockpit UI and cryptographic attestations.**
 
