@@ -1,5 +1,7 @@
 # Eval Cockpit (PolyEval)
 
+> Personal project, built on my own time and equipment. No employer code. An early prototype (3 commits).
+
 **Secure, deterministic evaluation of LLM‑generated code — with a real‑time cockpit UI and cryptographic attestations.**
 
 Eval Cockpit is a monorepo for **PolyEval**, a multi‑language code evaluation harness. It ships two deployable products:
